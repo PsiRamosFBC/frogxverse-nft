@@ -1,0 +1,28 @@
+dependencies:
+  - smartcontractkit/chainlink@1.8.0
+  - OpenZeppelin/openzeppelin-contracts@4.7.0
+  - divergencetech/ethier@0.31.0
+  - chiru-labs/ERC721A@4.2.0
+compiler:
+  solc:
+    remappings:
+      - "@chainlink=smartcontractkit/chainlink@1.8.0"
+      - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.7.0"
+      - "@divergencetech=divergencetech/ethier@0.31.0"
+      - "erc721a=chiru-labs/ERC721A@4.2.0"
+dotenv: .env
+networks:
+  default: development
+  development:
+    keyhash: "0x2ed0feb3e7fd2022120aa84fab1945545a9f2ffc9076fd6156fa96eaff4c1311"
+    subscriptionId: 1
+  goerli:
+    vrf_coordinator: "0x2Ca8E0C643bDe4C2E08ab1fA0da3401AdAD7734D"
+    link_token: ""
+    keyhash: "0x79d3d8832d904592c0bf9818b621522c988bb8b0c05cdc3b15aea1b6e8db0c15"
+    subscriptionId: ${GOERLI_SUBSCRIPTION_ID}
+    oracle: ""
+    jobId: ""
+    eth_usd_price_feed: ""
+wallets:
+  from_key: ${PRIVATE_KEY}

@@ -1,0 +1,1135 @@
+{
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "Paused",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "buyer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "Refund",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "beneficiary",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "numPurchased",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "Revenue",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "Unpaused",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "beneficiary",
+      "outputs": [
+        {
+          "internalType": "address payable",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "n",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "cost",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "pause",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "paused",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "price",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "n",
+          "type": "uint256"
+        }
+      ],
+      "name": "purchaseFreeOfCharge",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "sellerConfig",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "totalInventory",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxPerAddress",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxPerTx",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint248",
+          "name": "freeQuota",
+          "type": "uint248"
+        },
+        {
+          "internalType": "bool",
+          "name": "reserveFreeQuota",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "lockFreeQuota",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "lockTotalInventory",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address payable",
+          "name": "_beneficiary",
+          "type": "address"
+        }
+      ],
+      "name": "setBeneficiary",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_price",
+          "type": "uint256"
+        }
+      ],
+      "name": "setPrice",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "totalInventory",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "maxPerAddress",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "maxPerTx",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint248",
+              "name": "freeQuota",
+              "type": "uint248"
+            },
+            {
+              "internalType": "bool",
+              "name": "reserveFreeQuota",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "lockFreeQuota",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "lockTotalInventory",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct Seller.SellerConfig",
+          "name": "config",
+          "type": "tuple"
+        }
+      ],
+      "name": "setSellerConfig",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalSold",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "unpause",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "allSourcePaths": {
+    "0": "/Users/feliperamos/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.7.0/contracts/access/Ownable.sol",
+    "1": "/Users/feliperamos/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.7.0/contracts/security/Pausable.sol",
+    "15": "/Users/feliperamos/.brownie/packages/divergencetech/ethier@0.31.0/contracts/sales/FixedPriceSeller.sol",
+    "16": "/Users/feliperamos/.brownie/packages/divergencetech/ethier@0.31.0/contracts/sales/Seller.sol",
+    "18": "/Users/feliperamos/.brownie/packages/divergencetech/ethier@0.31.0/contracts/utils/OwnerPausable.sol",
+    "2": "/Users/feliperamos/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.7.0/contracts/security/ReentrancyGuard.sol",
+    "9": "/Users/feliperamos/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.7.0/contracts/utils/Context.sol"
+  },
+  "ast": {
+    "absolutePath": "/Users/feliperamos/.brownie/packages/divergencetech/ethier@0.31.0/contracts/sales/FixedPriceSeller.sol",
+    "exportedSymbols": {
+      "Address": [
+        1838
+      ],
+      "Context": [
+        1860
+      ],
+      "FixedPriceSeller": [
+        1228
+      ],
+      "Math": [
+        3438
+      ],
+      "Monotonic": [
+        3506
+      ],
+      "Ownable": [
+        2223
+      ],
+      "OwnerPausable": [
+        3540
+      ],
+      "Pausable": [
+        3648
+      ],
+      "ReentrancyGuard": [
+        2934
+      ],
+      "Seller": [
+        2882
+      ],
+      "Strings": [
+        2086
+      ]
+    },
+    "id": 1229,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1172,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.8",
+          ".0",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "108:31:15"
+      },
+      {
+        "absolutePath": "/Users/feliperamos/.brownie/packages/divergencetech/ethier@0.31.0/contracts/sales/Seller.sol",
+        "file": "./Seller.sol",
+        "id": 1173,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 1229,
+        "sourceUnit": 2883,
+        "src": "141:22:15",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 1175,
+              "name": "Seller",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 2882,
+              "src": "251:6:15"
+            },
+            "id": 1176,
+            "nodeType": "InheritanceSpecifier",
+            "src": "251:6:15"
+          }
+        ],
+        "canonicalName": "FixedPriceSeller",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 1174,
+          "nodeType": "StructuredDocumentation",
+          "src": "165:48:15",
+          "text": "@notice A Seller with fixed per-item price."
+        },
+        "fullyImplemented": false,
+        "id": 1228,
+        "linearizedBaseContracts": [
+          1228,
+          2882,
+          2934,
+          3540,
+          3648,
+          2223,
+          1860
+        ],
+        "name": "FixedPriceSeller",
+        "nameLocation": "231:16:15",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 1194,
+              "nodeType": "Block",
+              "src": "428:33:15",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 1191,
+                        "name": "_price",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1178,
+                        "src": "447:6:15",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 1190,
+                      "name": "setPrice",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1211,
+                      "src": "438:8:15",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256)"
+                      }
+                    },
+                    "id": 1192,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "438:16:15",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1193,
+                  "nodeType": "ExpressionStatement",
+                  "src": "438:16:15"
+                }
+              ]
+            },
+            "id": 1195,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [
+              {
+                "arguments": [
+                  {
+                    "id": 1186,
+                    "name": "sellerConfig",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 1181,
+                    "src": "400:12:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_SellerConfig_$2262_memory_ptr",
+                      "typeString": "struct Seller.SellerConfig memory"
+                    }
+                  },
+                  {
+                    "id": 1187,
+                    "name": "_beneficiary",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 1183,
+                    "src": "414:12:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  }
+                ],
+                "id": 1188,
+                "kind": "baseConstructorSpecifier",
+                "modifierName": {
+                  "id": 1185,
+                  "name": "Seller",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 2882,
+                  "src": "393:6:15"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "393:34:15"
+              }
+            ],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1184,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1178,
+                  "mutability": "mutable",
+                  "name": "_price",
+                  "nameLocation": "293:6:15",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1195,
+                  "src": "285:14:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1177,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "285:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1181,
+                  "mutability": "mutable",
+                  "name": "sellerConfig",
+                  "nameLocation": "336:12:15",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1195,
+                  "src": "309:39:15",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_SellerConfig_$2262_memory_ptr",
+                    "typeString": "struct Seller.SellerConfig"
+                  },
+                  "typeName": {
+                    "id": 1180,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 1179,
+                      "name": "Seller.SellerConfig",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 2262,
+                      "src": "309:19:15"
+                    },
+                    "referencedDeclaration": 2262,
+                    "src": "309:19:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_SellerConfig_$2262_storage_ptr",
+                      "typeString": "struct Seller.SellerConfig"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1183,
+                  "mutability": "mutable",
+                  "name": "_beneficiary",
+                  "nameLocation": "374:12:15",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1195,
+                  "src": "358:28:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address_payable",
+                    "typeString": "address payable"
+                  },
+                  "typeName": {
+                    "id": 1182,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "358:15:15",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "275:117:15"
+            },
+            "returnParameters": {
+              "id": 1189,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "428:0:15"
+            },
+            "scope": 1228,
+            "src": "264:197:15",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "documentation": {
+              "id": 1196,
+              "nodeType": "StructuredDocumentation",
+              "src": "467:138:15",
+              "text": "@notice The fixed per-item price.\n@dev Fixed as in not changing with time nor number of items, but not a\nconstant."
+            },
+            "functionSelector": "a035b1fe",
+            "id": 1198,
+            "mutability": "mutable",
+            "name": "price",
+            "nameLocation": "625:5:15",
+            "nodeType": "VariableDeclaration",
+            "scope": 1228,
+            "src": "610:20:15",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 1197,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "610:7:15",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1210,
+              "nodeType": "Block",
+              "src": "729:31:15",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 1208,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 1206,
+                      "name": "price",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1198,
+                      "src": "739:5:15",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 1207,
+                      "name": "_price",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1201,
+                      "src": "747:6:15",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "739:14:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 1209,
+                  "nodeType": "ExpressionStatement",
+                  "src": "739:14:15"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 1199,
+              "nodeType": "StructuredDocumentation",
+              "src": "637:36:15",
+              "text": "@notice Sets the per-item price."
+            },
+            "functionSelector": "91b7f5ed",
+            "id": 1211,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 1204,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 1203,
+                  "name": "onlyOwner",
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 2142,
+                  "src": "719:9:15"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "719:9:15"
+              }
+            ],
+            "name": "setPrice",
+            "nameLocation": "687:8:15",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1202,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1201,
+                  "mutability": "mutable",
+                  "name": "_price",
+                  "nameLocation": "704:6:15",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1211,
+                  "src": "696:14:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1200,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "696:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "695:16:15"
+            },
+            "returnParameters": {
+              "id": 1205,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "729:0:15"
+            },
+            "scope": 1228,
+            "src": "678:82:15",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "baseFunctions": [
+              2386
+            ],
+            "body": {
+              "id": 1226,
+              "nodeType": "Block",
+              "src": "1008:33:15",
+              "statements": [
+                {
+                  "expression": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 1224,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 1222,
+                      "name": "n",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1214,
+                      "src": "1025:1:15",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "*",
+                    "rightExpression": {
+                      "id": 1223,
+                      "name": "price",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1198,
+                      "src": "1029:5:15",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1025:9:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 1221,
+                  "id": 1225,
+                  "nodeType": "Return",
+                  "src": "1018:16:15"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 1212,
+              "nodeType": "StructuredDocumentation",
+              "src": "766:164:15",
+              "text": "@notice Override of Seller.cost() with fixed price.\n@dev The second parameter, metadata propagated from the call to _purchase(),\nis ignored."
+            },
+            "functionSelector": "3ec02e14",
+            "id": 1227,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "cost",
+            "nameLocation": "944:4:15",
+            "nodeType": "FunctionDefinition",
+            "overrides": {
+              "id": 1218,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "981:8:15"
+            },
+            "parameters": {
+              "id": 1217,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1214,
+                  "mutability": "mutable",
+                  "name": "n",
+                  "nameLocation": "957:1:15",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1227,
+                  "src": "949:9:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1213,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "949:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1216,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1227,
+                  "src": "960:7:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1215,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "960:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "948:20:15"
+            },
+            "returnParameters": {
+              "id": 1221,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1220,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1227,
+                  "src": "999:7:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1219,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "999:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "998:9:15"
+            },
+            "scope": 1228,
+            "src": "935:106:15",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 1229,
+        "src": "213:830:15",
+        "usedErrors": []
+      }
+    ],
+    "src": "108:936:15"
+  },
+  "bytecode": "",
+  "bytecodeSha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+  "compiler": {
+    "evm_version": "istanbul",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "version": "0.8.15+commit.e14f2714"
+  },
+  "contractName": "FixedPriceSeller",
+  "coverageMap": {
+    "branches": {},
+    "statements": {}
+  },
+  "dependencies": [
+    "OpenZeppelin/openzeppelin-contracts@4.7.0/Context",
+    "OpenZeppelin/openzeppelin-contracts@4.7.0/Ownable",
+    "divergencetech/ethier@0.31.0/OwnerPausable",
+    "OpenZeppelin/openzeppelin-contracts@4.7.0/Pausable",
+    "OpenZeppelin/openzeppelin-contracts@4.7.0/ReentrancyGuard",
+    "divergencetech/ethier@0.31.0/Seller"
+  ],
+  "deployedBytecode": "",
+  "deployedSourceMap": "",
+  "language": "Solidity",
+  "natspec": {
+    "events": {
+      "Refund(address,uint256)": {
+        "notice": "Emitted when a buyer is refunded."
+      },
+      "Revenue(address,uint256,uint256)": {
+        "notice": "Emitted on all purchases of non-zero amount."
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "beneficiary()": {
+        "notice": "Recipient of revenues."
+      },
+      "cost(uint256,uint256)": {
+        "details": "The second parameter, metadata propagated from the call to _purchase(), is ignored.",
+        "notice": "Override of Seller.cost() with fixed price."
+      },
+      "owner()": {
+        "details": "Returns the address of the current owner."
+      },
+      "pause()": {
+        "notice": "Pauses the contract."
+      },
+      "paused()": {
+        "details": "Returns true if the contract is paused, and false otherwise."
+      },
+      "price()": {
+        "notice": "The fixed per-item price."
+      },
+      "purchaseFreeOfCharge(address,uint256)": {
+        "notice": "Allows the contract owner to purchase without payment, within the quota enforced by the SellerConfig."
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+      },
+      "sellerConfig()": {
+        "notice": "Configuration of purchase limits."
+      },
+      "setBeneficiary(address)": {
+        "notice": "Sets the recipient of revenues."
+      },
+      "setPrice(uint256)": {
+        "notice": "Sets the per-item price."
+      },
+      "setSellerConfig((uint256,uint256,uint256,uint248,bool,bool,bool))": {
+        "notice": "Sets the seller config."
+      },
+      "totalSold()": {
+        "notice": "Returns the total number of items sold by this contract."
+      },
+      "transferOwnership(address)": {
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+      },
+      "unpause()": {
+        "notice": "Unpauses the contract."
+      }
+    },
+    "notice": "A Seller with fixed per-item price.",
+    "stateVariables": {
+      "price": {
+        "details": "Fixed as in not changing with time nor number of items, but not a constant."
+      }
+    },
+    "version": 1
+  },
+  "offset": [
+    213,
+    1043
+  ],
+  "opcodes": "",
+  "pcMap": {},
+  "sha1": "cb446ee4fc683a70d287d9a70be877d7781a33e2",
+  "source": "// SPDX-License-Identifier: MIT\n// Copyright (c) 2021 the ethier authors (github.com/divergencetech/ethier)\npragma solidity >=0.8.0 <0.9.0;\n\nimport \"./Seller.sol\";\n\n/// @notice A Seller with fixed per-item price.\nabstract contract FixedPriceSeller is Seller {\n    constructor(\n        uint256 _price,\n        Seller.SellerConfig memory sellerConfig,\n        address payable _beneficiary\n    ) Seller(sellerConfig, _beneficiary) {\n        setPrice(_price);\n    }\n\n    /**\n    @notice The fixed per-item price.\n    @dev Fixed as in not changing with time nor number of items, but not a\n    constant.\n     */\n    uint256 public price;\n\n    /// @notice Sets the per-item price.\n    function setPrice(uint256 _price) public onlyOwner {\n        price = _price;\n    }\n\n    /**\n    @notice Override of Seller.cost() with fixed price.\n    @dev The second parameter, metadata propagated from the call to _purchase(),\n    is ignored.\n     */\n    function cost(uint256 n, uint256) public view override returns (uint256) {\n        return n * price;\n    }\n}\n",
+  "sourceMap": "",
+  "sourcePath": "/Users/feliperamos/.brownie/packages/divergencetech/ethier@0.31.0/contracts/sales/FixedPriceSeller.sol",
+  "type": "contract"
+}

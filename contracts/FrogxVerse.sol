@@ -3,6 +3,7 @@
 pragma solidity >=0.8.10 <0.9.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 
 contract FrogxVerse is ERC721 {
     constructor()ERC721("FrogxVerse", "FROGXEL"){

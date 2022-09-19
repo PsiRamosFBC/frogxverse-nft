@@ -13,6 +13,9 @@ contract FrogxVerse is ERC721, VRFConsumerBaseV2 {
     uint32 private immutable i_callbackGasLimit;
     uint16 private constant REQUEST_CONFIRMATIONS = 3;
     uint32 private constant NUM_WORDS = 1;
+    uint16[10000] public ids;
+    uint16 private index;
+    mapping(uint256 => address) public requestIdToMinter;
 
     event RequestedMint(uint256 indexed requestId);
 
@@ -32,10 +35,17 @@ contract FrogxVerse is ERC721, VRFConsumerBaseV2 {
 
     function mintFrogxel(address to, uint256 tokenId) external {
         uint256 requestId = i_vrfCoordinator.requestRandomWords(i_gasLane, i_subscriptionId, REQUEST_CONFIRMATIONS, i_callbackGasLimit, NUM_WORDS);
+        requestIdToMinter[requestId] = to;
         emit RequestedMint(requestId);
     }
 
-    function fulfillRandomWords(uint256 requestId, uint256[] memory randomWords) internal override {
-
+    function fulfillRandomWords(uint256 requestId, uint256[] memory randomWords) internal override{
+        uint256 len = ids.length - index++;
+        require(len > 0, "No Frogxels left");
+        uint256 randomIndex = randomWords[0] % len;
+        uint256 tokenId = ids[randomIndex] != 0 ? ids[randomIndex] : randomIndex;
+        ids[randomIndex] = uint16(ids[len - 1] == 0 ? len - 1 : ids[len - 1]);
+        ids[len - 1] = 0;
+        _safeMint(requestIdToMinter[requestId], tokenId);
     }
 }

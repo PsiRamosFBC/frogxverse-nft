@@ -1,4 +1,15 @@
 {
+  "1337": {
+    "FrogxVerse": [
+      "0xc7E19E295374c3aE39dF7a7503f4ADc2D5F26619",
+      "0x155DE6e7BE6B6308A3Aa97e847CADD55524EC650",
+      "0x8E0C445D0D04DD0ba5dDfDb53a4Dd64db97EafBb",
+      "0x4182cE7A6548d42681b776960490041ACc483e3A"
+    ],
+    "VRFCoordinatorV2Mock": [
+      "0xB8f224c8752B3fDFCFA581a3f78f01A37f3053c8"
+    ]
+  },
   "5": {
     "FrogxVerse": [
       "0x8B50D7D385A07E1a3b8898b3220a2aCdFaF03b1c",

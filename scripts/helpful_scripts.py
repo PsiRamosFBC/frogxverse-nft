@@ -6,27 +6,30 @@ from brownie import (
     Contract,
     web3,
     chain,
+    VRFCoordinatorV2Mock,
 )
 import os
 import time
+from web3 import Web3
 
 # Set a default gas price
 from brownie.network import priority_fee
 
 OPENSEA_FORMAT = "https://testnets.opensea.io/assets/{}/{}"
-NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS = ["hardhat", "development", "ganache"]
+NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS = ["hardhat", "development", "ganache-local"]
 LOCAL_BLOCKCHAIN_ENVIRONMENTS = NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS + [
     "mainnet-fork",
     "binance-fork",
     "matic-fork",
 ]
 
-# contract_to_mock = {
-#     "link_token": LinkToken,
-#     "eth_usd_price_feed": MockV3Aggregator,
-#     "vrf_coordinator": VRFCoordinatorMock,
-#     "oracle": MockOracle,
-# }
+BASE_FEE = Web3.toWei(0.1, "ether")
+GAS_PRICE_LINK = Web3.toWei(0.00001, "ether")
+
+
+contract_to_mock = {
+    "vrf_coordinator": VRFCoordinatorV2Mock,
+}
 
 
 def get_account(index=None, id=None):
@@ -41,40 +44,40 @@ def get_account(index=None, id=None):
     return None
 
 
-# def get_contract(contract_name):
-#     """If you want to use this function, go to the brownie config and add a new entry for
-#     the contract that you want to be able to 'get'. Then add an entry in the in the variable 'contract_to_mock'.
-#     You'll see examples like the 'link_token'.
-#         This script will then either:
-#             - Get a address from the config
-#             - Or deploy a mock to use for a network that doesn't have it
-#         Args:
-#             contract_name (string): This is the name that is refered to in the
-#             brownie config and 'contract_to_mock' variable.
-#         Returns:
-#             brownie.network.contract.ProjectContract: The most recently deployed
-#             Contract of the type specificed by the dictonary. This could be either
-#             a mock or the 'real' contract on a live network.
-#     """
-#     contract_type = contract_to_mock[contract_name]
-#     if network.show_active() in NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS:
-#         if len(contract_type) <= 0:
-#             deploy_mocks()
-#         contract = contract_type[-1]
-#     else:
-#         try:
-#             contract_address = config["networks"][network.show_active()][contract_name]
-#             contract = Contract.from_abi(
-#                 contract_type._name, contract_address, contract_type.abi
-#             )
-#         except KeyError:
-#             print(
-#                 f"{network.show_active()} address not found, perhaps you should add it to the config or deploy mocks?"
-#             )
-#             print(
-#                 f"brownie run scripts/deploy_mocks.py --network {network.show_active()}"
-#             )
-#     return contract
+def get_contract(contract_name):
+    """If you want to use this function, go to the brownie config and add a new entry for
+    the contract that you want to be able to 'get'. Then add an entry in the in the variable 'contract_to_mock'.
+    You'll see examples like the 'link_token'.
+        This script will then either:
+            - Get a address from the config
+            - Or deploy a mock to use for a network that doesn't have it
+        Args:
+            contract_name (string): This is the name that is refered to in the
+            brownie config and 'contract_to_mock' variable.
+        Returns:
+            brownie.network.contract.ProjectContract: The most recently deployed
+            Contract of the type specificed by the dictonary. This could be either
+            a mock or the 'real' contract on a live network.
+    """
+    contract_type = contract_to_mock[contract_name]
+    if network.show_active() in NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS:
+        if len(contract_type) <= 0:
+            deploy_mocks()
+        contract = contract_type[-1]
+    else:
+        try:
+            contract_address = config["networks"][network.show_active()][contract_name]
+            contract = Contract.from_abi(
+                contract_type._name, contract_address, contract_type.abi
+            )
+        except KeyError:
+            print(
+                f"{network.show_active()} address not found, perhaps you should add it to the config or deploy mocks?"
+            )
+            print(
+                f"brownie run scripts/deploy_mocks.py --network {network.show_active()}"
+            )
+    return contract
 
 
 def get_publish_source():
@@ -91,18 +94,6 @@ def get_breed(breed_number):
     return switch[breed_number]
 
 
-def fund_with_link(
-    contract_address, account=None, link_token=None, amount=1000000000000000000
-):
-    account = account if account else get_account()
-    link_token = link_token if link_token else get_contract("link_token")
-    tx = interface.LinkTokenInterface(link_token).transfer(
-        contract_address, amount, {"from": account}
-    )
-    print(f"Funded {contract_address}")
-    return tx
-
-
 def get_verify_status():
     verify = (
         config["networks"][network.show_active()]["verify"]
@@ -112,32 +103,22 @@ def get_verify_status():
     return verify
 
 
-# def deploy_mocks(decimals=18, initial_value=2000):
-#     """
-#     Use this script if you want to deploy mocks to a testnet
-#     """
-#     # Set a default gas price
-#     priority_fee("1 gwei")
-#     print(f"The active network is {network.show_active()}")
-#     print("Deploying Mocks...")
-#     account = get_account()
-#     print("Deploying Mock Link Token...")
-#     link_token = LinkToken.deploy({"from": account})
-#     print("Deploying Mock Price Feed...")
-#     mock_price_feed = MockV3Aggregator.deploy(
-#         decimals, initial_value, {"from": account}
-#     )
-#     print(f"Deployed to {mock_price_feed.address}")
-#     print("Deploying Mock VRFCoordinator...")
-#     mock_vrf_coordinator = VRFCoordinatorMock.deploy(
-#         link_token.address, {"from": account, "gas_price": chain.base_fee}
-#     )
-#     print(f"Deployed to {mock_vrf_coordinator.address}")
+def deploy_mocks(decimals=18, initial_value=2000):
+    """
+    Use this script if you want to deploy mocks to a testnet
+    """
+    # Set a default gas price
+    # priority_fee("1 gwei")
+    print(f"The active network is {network.show_active()}")
+    print("Deploying Mocks...")
+    account = get_account()
+    print("Deploying Mock VRFCoordinator...")
+    mock_vrf_coordinator = VRFCoordinatorV2Mock.deploy(
+        BASE_FEE, GAS_PRICE_LINK, {"from": account}
+    )
+    print(f"Deployed to {mock_vrf_coordinator.address}")
 
-#     print("Deploying Mock Oracle...")
-#     mock_oracle = MockOracle.deploy(link_token.address, {"from": account})
-#     print(f"Deployed to {mock_oracle.address}")
-#     print("Mocks Deployed!")
+    print("Mocks Deployed!")
 
 
 def listen_for_event(brownie_contract, event, timeout=200, poll_interval=2):
@@ -169,10 +150,18 @@ def listen_for_event(brownie_contract, event, timeout=200, poll_interval=2):
     return {"event": None}
 
 
-def get_publish_source():
-    if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS or not os.getenv(
-        "ETHERSCAN_TOKEN"
-    ):
-        return False
+def get_subId(account):
+    if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
+        subId_tx = VRFCoordinatorV2Mock[-1].createSubscription({"from": account})
+        print(subId_tx.return_value)
+        return subId_tx.return_value
     else:
-        return True
+        subId = config["networks"][network.show_active()]["subscriptionid"]
+        return subId
+
+
+def add_consumer(account, subId, consumer):
+    if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
+        VRFCoordinatorV2Mock[-1].addConsumer(subId, consumer, {"from": account})
+    else:
+        pass

@@ -34,7 +34,7 @@ contract FrogxVerse is ERC721, VRFConsumerBaseV2 {
         i_callbackGasLimit = _callbackGasLimit;
     }
 
-    function mintFrogxel(address to, uint256 tokenId) external {
+    function mintFrogxel(address to) external {
         uint256 requestId = i_vrfCoordinator.requestRandomWords(i_gasLane, i_subscriptionId, REQUEST_CONFIRMATIONS, i_callbackGasLimit, NUM_WORDS);
         requestIdToMinter[requestId] = to;
         emit RequestedMint(requestId);

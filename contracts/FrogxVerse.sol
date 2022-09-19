@@ -18,6 +18,7 @@ contract FrogxVerse is ERC721, VRFConsumerBaseV2 {
     mapping(uint256 => address) public requestIdToMinter;
 
     event RequestedMint(uint256 indexed requestId);
+    event FrogxelMinted(uint256 indexed tokenId);
 
     constructor(
         address _VRFCoordinator,
@@ -47,5 +48,6 @@ contract FrogxVerse is ERC721, VRFConsumerBaseV2 {
         ids[randomIndex] = uint16(ids[len - 1] == 0 ? len - 1 : ids[len - 1]);
         ids[len - 1] = 0;
         _safeMint(requestIdToMinter[requestId], tokenId);
+        emit FrogxelMinted(tokenId);
     }
 }

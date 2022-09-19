@@ -14,7 +14,7 @@ contract FrogxVerse is ERC721, VRFConsumerBaseV2 {
     uint16 private constant REQUEST_CONFIRMATIONS = 3;
     uint32 private constant NUM_WORDS = 1;
 
-    event RequestedMint(uint256 indexed requestId)
+    event RequestedMint(uint256 indexed requestId);
 
     constructor(
         address _VRFCoordinator,
@@ -25,14 +25,14 @@ contract FrogxVerse is ERC721, VRFConsumerBaseV2 {
     ERC721("FrogxVerse", "FROGXEL")
     VRFConsumerBaseV2(_VRFCoordinator){
         i_vrfCoordinator = VRFCoordinatorV2Interface(_VRFCoordinator);
-        i_gasLane = gasLane;
+        i_gasLane = _gasLane;
         i_subscriptionId = _subscriptionId;
-        i_callbackGasLimit = _callbackGasLimit
+        i_callbackGasLimit = _callbackGasLimit;
     }
 
     function mintFrogxel(address to, uint256 tokenId) external {
         uint256 requestId = i_vrfCoordinator.requestRandomWords(i_gasLane, i_subscriptionId, REQUEST_CONFIRMATIONS, i_callbackGasLimit, NUM_WORDS);
-        emit RequestedMint(requestId)
+        emit RequestedMint(requestId);
     }
 
     function fulfillRandomWords(uint256 requestId, uint256[] memory randomWords) internal override {

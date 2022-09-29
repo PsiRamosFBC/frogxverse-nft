@@ -21,21 +21,21 @@
     }
   ],
   "allSourcePaths": {
-    "8": "/Users/feliperamos/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.7.0/contracts/utils/introspection/IERC165.sol"
+    "11": "/Users/feliperamos/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.7.0/contracts/utils/introspection/IERC165.sol"
   },
   "ast": {
     "absolutePath": "/Users/feliperamos/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.7.0/contracts/utils/introspection/IERC165.sol",
     "exportedSymbols": {
       "IERC165": [
-        1956
+        2708
       ]
     },
-    "id": 1957,
+    "id": 2709,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1946,
+        "id": 2698,
         "literals": [
           "solidity",
           "^",
@@ -43,7 +43,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "100:23:8"
+        "src": "100:23:11"
       },
       {
         "abstract": false,
@@ -52,48 +52,48 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 1947,
+          "id": 2699,
           "nodeType": "StructuredDocumentation",
-          "src": "125:279:8",
+          "src": "125:279:11",
           "text": " @dev Interface of the ERC165 standard, as defined in the\n https://eips.ethereum.org/EIPS/eip-165[EIP].\n Implementers can declare support of contract interfaces, which can then be\n queried by others ({ERC165Checker}).\n For an implementation, see {ERC165}."
         },
         "fullyImplemented": false,
-        "id": 1956,
+        "id": 2708,
         "linearizedBaseContracts": [
-          1956
+          2708
         ],
         "name": "IERC165",
-        "nameLocation": "415:7:8",
+        "nameLocation": "415:7:11",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "documentation": {
-              "id": 1948,
+              "id": 2700,
               "nodeType": "StructuredDocumentation",
-              "src": "429:340:8",
+              "src": "429:340:11",
               "text": " @dev Returns true if this contract implements the interface defined by\n `interfaceId`. See the corresponding\n https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section]\n to learn more about how these ids are created.\n This function call must use less than 30 000 gas."
             },
             "functionSelector": "01ffc9a7",
-            "id": 1955,
+            "id": 2707,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "supportsInterface",
-            "nameLocation": "783:17:8",
+            "nameLocation": "783:17:11",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1951,
+              "id": 2703,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1950,
+                  "id": 2702,
                   "mutability": "mutable",
                   "name": "interfaceId",
-                  "nameLocation": "808:11:8",
+                  "nameLocation": "808:11:11",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1955,
-                  "src": "801:18:8",
+                  "scope": 2707,
+                  "src": "801:18:11",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -101,10 +101,10 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 1949,
+                    "id": 2701,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
-                    "src": "801:6:8",
+                    "src": "801:6:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes4",
                       "typeString": "bytes4"
@@ -113,21 +113,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "800:20:8"
+              "src": "800:20:11"
             },
             "returnParameters": {
-              "id": 1954,
+              "id": 2706,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1953,
+                  "id": 2705,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1955,
-                  "src": "844:4:8",
+                  "scope": 2707,
+                  "src": "844:4:11",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -135,10 +135,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1952,
+                    "id": 2704,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "844:4:8",
+                    "src": "844:4:11",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -147,21 +147,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "843:6:8"
+              "src": "843:6:11"
             },
-            "scope": 1956,
-            "src": "774:76:8",
+            "scope": 2708,
+            "src": "774:76:11",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1957,
-        "src": "405:447:8",
+        "scope": 2709,
+        "src": "405:447:11",
         "usedErrors": []
       }
     ],
-    "src": "100:753:8"
+    "src": "100:753:11"
   },
   "bytecode": "",
   "bytecodeSha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",

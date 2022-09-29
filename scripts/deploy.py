@@ -10,12 +10,14 @@ from scripts.helpful_scripts import (
 
 def deploy():
     account = get_account()
+    vrf_coordinator = get_contract("vrf_coordinator")
     subId = get_subId(account)
     frogxverse = FrogxVerse.deploy(
-        get_contract("vrf_coordinator"),
+        vrf_coordinator,
         config["networks"][network.show_active()]["keyhash"],
         subId,
         1000000,
+        account,
         {"from": account},
         publish_source=get_publish_source(),
     )

@@ -25,6 +25,7 @@ LOCAL_BLOCKCHAIN_ENVIRONMENTS = NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS + [
 
 BASE_FEE = Web3.toWei(0.1, "ether")
 GAS_PRICE_LINK = Web3.toWei(0.00001, "ether")
+FUND_SUBID_AMOUNT = Web3.toWei(20, "ether")
 
 
 contract_to_mock = {
@@ -152,15 +153,21 @@ def listen_for_event(brownie_contract, event, timeout=200, poll_interval=2):
 
 def get_subId(account):
     if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
+        print("Creating subscription...")
         subId_tx = VRFCoordinatorV2Mock[-1].createSubscription({"from": account})
         print(subId_tx.return_value)
+        ("Funding Mock Subscription...")
+        func_subId_tx = VRFCoordinatorV2Mock[-1].fundSubscription(
+            subId_tx.return_value, FUND_SUBID_AMOUNT, {"from": account}
+        )
         return subId_tx.return_value
     else:
-        subId = config["networks"][network.show_active()]["subscriptionid"]
+        subId = config["networks"][network.show_active()]["subscriptionId"]
         return subId
 
 
 def add_consumer(account, subId, consumer):
+    print("Adding consumer...")
     if network.show_active() in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
         VRFCoordinatorV2Mock[-1].addConsumer(subId, consumer, {"from": account})
     else:

@@ -6,15 +6,16 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import "@divergencetech/contracts/sales/FixedPriceSeller.sol";
+import "@divergencetech/contracts/erc721/BaseTokenURI.sol";
 
-contract FrogxVerse is ERC721, VRFConsumerBaseV2, FixedPriceSeller {
+contract FrogxVerse is ERC721, VRFConsumerBaseV2, FixedPriceSeller, BaseTokenURI {
     VRFCoordinatorV2Interface private immutable i_vrfCoordinator;
     bytes32 private immutable i_gasLane;
     uint64 private immutable i_subscriptionId;
     uint32 private immutable i_callbackGasLimit;
     uint16 private constant REQUEST_CONFIRMATIONS = 3;
     uint32 private constant NUM_WORDS = 1;
-    uint16[10000] public ids;
+    uint16[5] public ids;
     uint16 private index;
     mapping(uint256 => address) public requestIdToMinter;
 
@@ -33,9 +34,9 @@ contract FrogxVerse is ERC721, VRFConsumerBaseV2, FixedPriceSeller {
     FixedPriceSeller(
         0.01 ether,
         Seller.SellerConfig({
-            totalInventory: 10,
+            totalInventory: 5,
             lockTotalInventory: true,
-            maxPerAddress: 10,
+            maxPerAddress: 5,
             maxPerTx: 1,
             freeQuota: 1,
             lockFreeQuota: false,
@@ -44,6 +45,7 @@ contract FrogxVerse is ERC721, VRFConsumerBaseV2, FixedPriceSeller {
         }),
         beneficiary
     )
+    BaseTokenURI("")
     {
         i_vrfCoordinator = VRFCoordinatorV2Interface(_VRFCoordinator);
         i_gasLane = _gasLane;
@@ -70,5 +72,13 @@ contract FrogxVerse is ERC721, VRFConsumerBaseV2, FixedPriceSeller {
         uint256 requestId = i_vrfCoordinator.requestRandomWords(i_gasLane, i_subscriptionId, REQUEST_CONFIRMATIONS, i_callbackGasLimit, NUM_WORDS);
         requestIdToMinter[requestId] = to;
         emit RequestedMint(requestId);
+    }
+
+    function _baseURI() internal view override (BaseTokenURI, ERC721) returns (string memory) {
+        return BaseTokenURI._baseURI();
+    }
+    
+    function tokenURI(uint256 tokenId) public view override returns (string memory) {
+        return super.tokenURI(tokenId);
     }
 }
